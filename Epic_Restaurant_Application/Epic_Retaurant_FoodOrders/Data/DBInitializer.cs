@@ -9,7 +9,7 @@ namespace Epic_Restaurant_Application.Data
     public class DBInitializer : IDBinitializer
     {
         // This method will create and seed the database.
-        public void Initialize(FoodOrdersAPIContext context)
+        public void Initialize(FoodMenusAPIContext context)
         {
             context.Database.EnsureDeleted();
             context.Database.EnsureCreated();

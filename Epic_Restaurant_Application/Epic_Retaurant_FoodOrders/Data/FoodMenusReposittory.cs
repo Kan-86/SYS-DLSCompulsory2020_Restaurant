@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Epic_Restaurant_Application.Data
 {
-    public class RestaurantReposittory : IRestaurantRepository
+    public class FoodMenusReposittory : IFoodMenusRepository
     {
-        RestaurantAPIContext db;
+        FoodMenusAPIContext db;
 
-        public RestaurantReposittory(RestaurantAPIContext context)
+        public FoodMenusReposittory(FoodMenusAPIContext context)
         {
             db = context;
         }

@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Epic_Restaurant_Application.Data
 {
-    public class RestaurantAPIContext : DbContext
+    public class FoodMenusAPIContext : DbContext
     {
-        public RestaurantAPIContext(DbContextOptions<RestaurantAPIContext> options)
+        public FoodMenusAPIContext(DbContextOptions<FoodMenusAPIContext> options)
             : base(options)
         {
 

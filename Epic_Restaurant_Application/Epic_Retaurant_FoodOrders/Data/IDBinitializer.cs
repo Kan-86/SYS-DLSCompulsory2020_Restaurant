@@ -7,6 +7,6 @@ namespace Epic_Restaurant_Application.Data
 {
     public interface IDBinitializer
     {
-        void Initialize(FoodOrdersAPIContext context);
+        void Initialize(FoodMenusAPIContext context);
     }
 }

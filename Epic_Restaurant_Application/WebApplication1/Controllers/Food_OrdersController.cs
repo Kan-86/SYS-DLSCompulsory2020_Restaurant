@@ -11,11 +11,11 @@ namespace Epic_Restaurant_Application.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class FoodMenuController : ControllerBase
+    public class Food_OrdersController : ControllerBase
     {
         private readonly IRepository<FoodMenu> repository;
 
-        public FoodMenuController(IRepository<FoodMenu> repos)
+        public Food_OrdersController(IRepository<FoodMenu> repos)
         {
             repository = repos;
         }

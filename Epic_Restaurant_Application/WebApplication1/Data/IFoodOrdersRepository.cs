@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Epic_Restaurant_Application.Data
 {
-    interface IRestaurantRepository : IRepository<FoodMenu>
+    interface IFoodOrdersRepository : IRepository<FoodMenu>
     {
         IEnumerable<FoodMenu> GetByFoodId (int customerId);
 

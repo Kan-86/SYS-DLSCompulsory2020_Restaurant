@@ -1,6 +1,6 @@
 using System;
 
-namespace Epic_Retaurant_FoodOrders
+namespace Epic_Retaurant_Food_Menus
 {
     public class WeatherForecast
     {

@@ -1,20 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Epic_Restaurant_Application.Data;
-using Epic_Restaurant_Application.HiddenModels;
+
+using Epic_Restaurant_Food_Orders.Data;
+using Epic_Restaurant_Food_Orders.HiddenModels;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
-namespace WebApplication1
+namespace Epic_Restaurant_Food_Orders
 {
     public class Startup
     {
@@ -32,7 +26,7 @@ namespace WebApplication1
             services.AddDbContext<FoodOrdersAPIContext>(opt => opt.UseInMemoryDatabase("FoodDb"));
 
             // Register repositories for dependency injection
-            services.AddScoped<IRepository<FoodMenu>, FoodOrdersReposittory>();
+            services.AddScoped<IRepository<FoodOrder>, FoodOrdersReposittory>();
 
             // Register database initializer for dependency injection
             services.AddTransient<IDBinitializer, DBInitializer>();

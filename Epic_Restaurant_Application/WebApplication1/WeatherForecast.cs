@@ -1,6 +1,6 @@
 using System;
 
-namespace WebApplication1
+namespace Epic_Restaurant_Food_Orders
 {
     public class WeatherForecast
     {

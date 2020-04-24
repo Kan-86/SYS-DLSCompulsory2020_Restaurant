@@ -9,7 +9,6 @@ namespace Epic_Restaurant_Food_Orders.HiddenModels
     {
         public int Id { get; set; }
         public DateTime? Date { get; set; }
-        public int? customerId { get; set; }
         public OrderStatus Status { get; set; }
         public IList<FoodOrderLines> FoodOrderLines { get; set; }
 

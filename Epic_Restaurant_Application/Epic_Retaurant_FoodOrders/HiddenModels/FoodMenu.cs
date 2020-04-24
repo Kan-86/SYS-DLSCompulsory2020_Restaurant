@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Epic_Restaurant_Application.HiddenModels
+namespace Epic_Retaurant_Food_Menus.HiddenModels
 {
     public class FoodMenu
     {

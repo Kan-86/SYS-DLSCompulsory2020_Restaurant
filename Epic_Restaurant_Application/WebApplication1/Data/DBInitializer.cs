@@ -1,10 +1,11 @@
 ﻿using Epic_Restaurant_Application.HiddenModels;
+using Epic_Restaurant_Food_Orders.HiddenModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Epic_Restaurant_Application.Data
+namespace Epic_Restaurant_Food_Orders.Data
 {
     public class DBInitializer : IDBinitializer
     {
@@ -15,45 +16,73 @@ namespace Epic_Restaurant_Application.Data
             context.Database.EnsureCreated();
 
             // Look for any Products
-            if (context.FoodMenus.Any())
+            if (context.FoodOrders.Any())
             {
                 return;   // DB has been seeded
             }
 
-            List<FoodMenu> burger = new List<FoodMenu>
+            List<FoodOrder> burger = new List<FoodOrder>
             {
-                new FoodMenu { 
-                    FoodType = "Burger",
-                    FoodName = "Jalapeno Burger"
-                    }
+                new FoodOrder 
+                {
+                    Date = DateTime.Now,
+                     FoodOrderLines = new List<FoodOrderLines>
+                     {
+                        new FoodOrderLines 
+                        { 
+                            FoodMenuId = 1, Quantity = 2, FoodOrderId = 1 
+                        }
+                     }
+                }
             };
-            List<FoodMenu> fish = new List<FoodMenu>
+            List<FoodOrder> fish = new List<FoodOrder>
             {
-                new FoodMenu {
-                    FoodType = "fish",
-                    FoodName = "Freshly baked banana Cod"
-                    }
+                new FoodOrder
+                {
+                    Date = DateTime.Now,
+                     FoodOrderLines = new List<FoodOrderLines>
+                     {
+                        new FoodOrderLines
+                        {
+                            FoodMenuId = 1, Quantity = 2, FoodOrderId = 1
+                        }
+                     }
+                }
             };
-            List<FoodMenu> soup = new List<FoodMenu>
+            List<FoodOrder> soup = new List<FoodOrder>
             {
-                new FoodMenu {
-                    FoodType = "Soup",
-                    FoodName = "Tomato Soup"
-                    }
+                new FoodOrder
+                {
+                    Date = DateTime.Now,
+                     FoodOrderLines = new List<FoodOrderLines>
+                     {
+                        new FoodOrderLines
+                        {
+                            FoodMenuId = 1, Quantity = 2, FoodOrderId = 1
+                        }
+                     }
+                }
             };
-            List<FoodMenu> desert = new List<FoodMenu>
+            List<FoodOrder> desert = new List<FoodOrder>
             {
-                new FoodMenu {
-                    FoodType = "Desert",
-                    FoodName = "Flaming Dragon Chilli Chocklate Cake"
-                    }
+                new FoodOrder
+                {
+                    Date = DateTime.Now,
+                     FoodOrderLines = new List<FoodOrderLines>
+                     {
+                        new FoodOrderLines
+                        {
+                            FoodMenuId = 1, Quantity = 2, FoodOrderId = 1
+                        }
+                     }
+                }
             };
 
 
-            context.FoodMenus.AddRange(burger);
-            context.FoodMenus.AddRange(fish);
-            context.FoodMenus.AddRange(soup);
-            context.FoodMenus.AddRange(desert);
+            context.FoodOrders.AddRange(burger);
+            context.FoodOrders.AddRange(fish);
+            context.FoodOrders.AddRange(soup);
+            context.FoodOrders.AddRange(desert);
             context.SaveChanges();
         }
     }

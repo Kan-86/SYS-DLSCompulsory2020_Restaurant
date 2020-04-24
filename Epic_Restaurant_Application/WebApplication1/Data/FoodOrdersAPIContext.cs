@@ -1,7 +1,8 @@
 ﻿using Epic_Restaurant_Application.HiddenModels;
+using Epic_Restaurant_Food_Orders.HiddenModels;
 using Microsoft.EntityFrameworkCore;
 
-namespace Epic_Restaurant_Application.Data
+namespace Epic_Restaurant_Food_Orders.Data
 {
     public class FoodOrdersAPIContext : DbContext
     {
@@ -11,6 +12,6 @@ namespace Epic_Restaurant_Application.Data
 
         }
 
-        public DbSet<FoodMenu> FoodMenus { get; set; }
+        public DbSet<FoodOrder> FoodOrders { get; set; }
     }
 }

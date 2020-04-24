@@ -1,14 +1,13 @@
-﻿using Epic_Restaurant_Application.HiddenModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿
 
-namespace Epic_Restaurant_Application.Data
+using Epic_Restaurant_Food_Orders.HiddenModels;
+using System.Collections.Generic;
+
+namespace Epic_Restaurant_Food_Orders.Data
 {
-    interface IFoodOrdersRepository : IRepository<FoodMenu>
+    public interface IFoodOrdersRepository : IRepository<FoodOrder>
     {
-        IEnumerable<FoodMenu> GetByFoodId (int customerId);
+        IEnumerable<FoodOrder> GetByFoodId (int customerId);
 
     }
 }

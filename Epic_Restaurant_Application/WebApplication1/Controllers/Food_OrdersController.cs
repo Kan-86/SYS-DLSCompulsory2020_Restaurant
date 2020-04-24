@@ -1,45 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Epic_Restaurant_Application.Data;
-using Epic_Restaurant_Application.HiddenModels;
+using Epic_Restaurant_Food_Orders.Data;
+using Epic_Restaurant_Food_Orders.HiddenModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Epic_Restaurant_Application.Controllers
+namespace Epic_Restaurant_Food_Orders.Controllers
 {
     [ApiController]
     [Route("[controller]")]
     public class Food_OrdersController : ControllerBase
     {
-        private readonly IRepository<FoodMenu> repository;
+        private readonly IRepository<FoodOrder> repository;
 
-        public Food_OrdersController(IRepository<FoodMenu> repos)
+        public Food_OrdersController(IRepository<FoodOrder> repos)
         {
             repository = repos;
         }
-        // GET: api/FoodMenu
+        // GET: api/FoodOrder
         [HttpGet]
-        public IEnumerable<FoodMenu> Get()
+        public IEnumerable<FoodOrder> Get()
         {
             return repository.GetAll();
         }
 
-        // GET: api/FoodMenu/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        // GET: api/FoodOrder/5
+        [HttpGet("{id}", Name = "GetOrder")]
+        public string GetOrderById(int id)
         {
             return "value";
         }
 
-        // POST: api/FoodMenu
+        // POST: api/FoodOrder
         [HttpPost]
         public void Post([FromBody] string value)
         {
         }
 
-        // PUT: api/FoodMenu/5
+        // PUT: api/FoodOrder/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {

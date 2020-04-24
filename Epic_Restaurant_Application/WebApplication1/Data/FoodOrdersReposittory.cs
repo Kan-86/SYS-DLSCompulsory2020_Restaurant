@@ -1,10 +1,11 @@
 ﻿using Epic_Restaurant_Application.HiddenModels;
+using Epic_Restaurant_Food_Orders.HiddenModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Epic_Restaurant_Application.Data
+namespace Epic_Restaurant_Food_Orders.Data
 {
     public class FoodOrdersReposittory : IFoodOrdersRepository
     {
@@ -14,27 +15,28 @@ namespace Epic_Restaurant_Application.Data
         {
             db = context;
         }
-        public FoodMenu Add(FoodMenu entity)
+
+        public FoodOrder Add(FoodOrder entity)
         {
             throw new NotImplementedException();
         }
 
-        public void Edit(FoodMenu entity)
+        public void Edit(FoodOrder entity)
         {
             throw new NotImplementedException();
         }
 
-        public FoodMenu Get(int id)
+        public FoodOrder Get(int id)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<FoodMenu> GetAll()
+        public IEnumerable<FoodOrder> GetAll()
         {
-            return db.FoodMenus.ToList();
+            return db.FoodOrders.ToList();
         }
 
-        public IEnumerable<FoodMenu> GetByFoodId(int customerId)
+        public IEnumerable<FoodOrder> GetByFoodId(int customerId)
         {
             throw new NotImplementedException();
         }

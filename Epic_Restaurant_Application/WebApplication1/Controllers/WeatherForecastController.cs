@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace WebApplication1.Controllers
+namespace Epic_Restaurant_Food_Orders.Controllers
 {
     [ApiController]
     [Route("[controller]")]

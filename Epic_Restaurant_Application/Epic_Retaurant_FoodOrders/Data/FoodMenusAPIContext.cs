@@ -1,7 +1,8 @@
-﻿using Epic_Restaurant_Application.HiddenModels;
+﻿
+using Epic_Retaurant_Food_Menus.HiddenModels;
 using Microsoft.EntityFrameworkCore;
 
-namespace Epic_Restaurant_Application.Data
+namespace Epic_Retaurant_Food_Menus.Data
 {
     public class FoodMenusAPIContext : DbContext
     {

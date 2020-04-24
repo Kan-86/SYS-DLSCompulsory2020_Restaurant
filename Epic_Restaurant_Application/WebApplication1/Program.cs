@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace WebApplication1
+namespace Epic_Restaurant_Food_Orders
 {
     public class Program
     {

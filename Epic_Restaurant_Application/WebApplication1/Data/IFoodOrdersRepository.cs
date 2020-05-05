@@ -5,9 +5,9 @@ using System.Collections.Generic;
 
 namespace Epic_Restaurant_Food_Orders.Data
 {
-    public interface IFoodOrdersRepository : IRepository<FoodOrder>
+    public interface IFoodOrdersRepository : IRepository<SharedFoodOrder>
     {
-        IEnumerable<FoodOrder> GetByFoodId (int customerId);
+        IEnumerable<SharedFoodOrder> GetByFoodId (int customerId);
 
     }
 }

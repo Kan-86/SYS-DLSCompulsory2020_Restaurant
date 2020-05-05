@@ -16,12 +16,12 @@ namespace Epic_Restaurant_Food_Orders.Data
             db = context;
         }
 
-        public FoodOrder Add(FoodOrder entity)
+        public FoodOrder Add(SharedFoodOrder entity)
         {
             throw new NotImplementedException();
         }
 
-        public void Edit(FoodOrder entity)
+        public void Edit(SharedFoodOrder entity)
         {
             throw new NotImplementedException();
         }
@@ -31,12 +31,12 @@ namespace Epic_Restaurant_Food_Orders.Data
             throw new NotImplementedException();
         }
 
-        public IEnumerable<FoodOrder> GetAll()
+        public IEnumerable<SharedFoodOrder> GetAll()
         {
             return db.FoodOrders.ToList();
         }
 
-        public IEnumerable<FoodOrder> GetByFoodId(int customerId)
+        public IEnumerable<SharedFoodOrder> GetByFoodId(int customerId)
         {
             throw new NotImplementedException();
         }

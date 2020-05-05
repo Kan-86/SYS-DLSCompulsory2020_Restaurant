@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Epic_Retaurant_Food_Menus.Data;
 using Epic_Retaurant_Food_Menus.HiddenModels;
+using Epic_Retaurant_Food_Menus.Infastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -18,6 +19,8 @@ namespace Epic_Retaurant_Food_Menus
 {
     public class Startup
     {
+        string cloudAMQPConnectionString =
+  "host=kangaroo.rmq.cloudamqp.com;virtualHost=tpyrvtpo;username=tpyrvtpo;password=8neWlMBPVyuuxZuSCRtIMhjjz4IxGvoD";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -51,7 +54,9 @@ namespace Epic_Retaurant_Food_Menus
                 var dbInitializer = services.GetService<IDBinitializer>();
                 dbInitializer.Initialize(dbContext);
             }
-
+            // Create a message listener in a separate thread.
+            Task.Factory.StartNew(() =>
+                new MessageListener(app.ApplicationServices, cloudAMQPConnectionString).Start());
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

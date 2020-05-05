@@ -1,6 +1,7 @@
 
 using Epic_Restaurant_Food_Orders.Data;
 using Epic_Restaurant_Food_Orders.HiddenModels;
+using Epic_Restaurant_Food_Orders.Infastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -12,6 +13,8 @@ namespace Epic_Restaurant_Food_Orders
 {
     public class Startup
     {
+        string cloudAMQPConnectionString =
+"host=kangaroo.rmq.cloudamqp.com;virtualHost=tpyrvtpo;username=tpyrvtpo;password=8neWlMBPVyuuxZuSCRtIMhjjz4IxGvoD";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -26,10 +29,14 @@ namespace Epic_Restaurant_Food_Orders
             services.AddDbContext<FoodOrdersAPIContext>(opt => opt.UseInMemoryDatabase("FoodDb"));
 
             // Register repositories for dependency injection
-            services.AddScoped<IRepository<FoodOrder>, FoodOrdersReposittory>();
+            services.AddScoped<IRepository<SharedFoodOrder>, FoodOrdersReposittory>();
 
             // Register database initializer for dependency injection
             services.AddTransient<IDBinitializer, DBInitializer>();
+
+            // Register MessagePublisher (a messaging gateway) for dependency injection
+            services.AddSingleton<IMessagePublisher>(new
+                MessagePublisher(cloudAMQPConnectionString));
 
             services.AddControllers();
         }

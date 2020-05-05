@@ -12,6 +12,6 @@ namespace Epic_Restaurant_Food_Orders.Data
 
         }
 
-        public DbSet<FoodOrder> FoodOrders { get; set; }
+        public DbSet<SharedFoodOrder> FoodOrders { get; set; }
     }
 }

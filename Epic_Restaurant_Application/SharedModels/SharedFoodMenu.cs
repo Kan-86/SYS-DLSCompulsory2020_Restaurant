@@ -10,5 +10,6 @@ namespace Epic_Restaurant_Application.HiddenModels
         public int Id { get; set; }
         public string FoodType { get; set; }
         public string FoodName { get; set; }
+        public int FoodInStock { get; set; }
     }
 }

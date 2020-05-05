@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  epic_restaurant_food_orders:
+    image: ${DOCKER_REGISTRY-}epicrestaurantfoodorders
+    build:
+      context: .
+      dockerfile: WebApplication1/Dockerfile

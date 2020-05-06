@@ -1,15 +1,15 @@
 using System;
+using CustomerAPI.Data;
+using CustomerAPI.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using OrderApi.Data;
-using OrderApi.Infrastructure;
 using SharedModels;
 
-namespace OrderApi
+namespace CustomerAPI
 {
     public class Startup
     {
@@ -18,13 +18,11 @@ namespace OrderApi
         // from other services specified in the docker compose file (which in this solution is
         // the order service).
         Uri productServiceBaseUrl = new Uri("http://productapi/products/");
-        Uri customerServiceBaseUrl = new Uri("http://customerapi/customer/");
 
         // RabbitMQ connection string (I use CloudAMQP as a RabbitMQ server).
         // Remember to replace this connectionstring with youur own.
         string cloudAMQPConnectionString =
             "host=kangaroo.rmq.cloudamqp.com;virtualHost=tpyrvtpo;username=tpyrvtpo;password=8neWlMBPVyuuxZuSCRtIMhjjz4IxGvoD";
-
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -36,21 +34,18 @@ namespace OrderApi
         public void ConfigureServices(IServiceCollection services)
         {
             // In-memory database:
-            services.AddDbContext<OrderApiContext>(opt => opt.UseInMemoryDatabase("OrdersDb"));
+            services.AddDbContext<CustomerApiContext>(opt => opt.UseInMemoryDatabase("CustomersDb"));
 
             // Register repositories for dependency injection
-            services.AddScoped<IRepository<Order>, OrderRepository>();
+            services.AddScoped<IRepository<Customer>, CustomerRepository>();
 
             // Register database initializer for dependency injection
             services.AddTransient<IDbInitializer, DbInitializer>();
 
+
             // Register product service gateway for dependency injection
             services.AddSingleton<IServiceGateway<ProductDto>>(new
                 ProductServiceGateway(productServiceBaseUrl));
-
-            // Register product service gateway for dependency injection
-            services.AddSingleton<IServiceGateway<Customer>>(new
-                CustomerServiceGateway(customerServiceBaseUrl));
 
             // Register MessagePublisher (a messaging gateway) for dependency injection
             services.AddSingleton<IMessagePublisher>(new
@@ -65,8 +60,9 @@ namespace OrderApi
             // Initialize the database
             using (var scope = app.ApplicationServices.CreateScope())
             {
+                // Initialize the database
                 var services = scope.ServiceProvider;
-                var dbContext = services.GetService<OrderApiContext>();
+                var dbContext = services.GetService<CustomerApiContext>();
                 var dbInitializer = services.GetService<IDbInitializer>();
                 dbInitializer.Initialize(dbContext);
             }
@@ -76,14 +72,13 @@ namespace OrderApi
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
+            app.UseEndpoints(endpoints => {
                 endpoints.MapControllers();
             });
         }

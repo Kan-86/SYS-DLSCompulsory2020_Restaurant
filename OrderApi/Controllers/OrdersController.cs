@@ -13,15 +13,18 @@ namespace OrderApi.Controllers
     {
         IOrderRepository repository;
         IServiceGateway<ProductDto> productServiceGateway;
+        IServiceGateway<Customer> customertServiceGateway;
         IMessagePublisher messagePublisher;
 
         public OrdersController(IRepository<Order> repos,
             IServiceGateway<ProductDto> gateway,
-            IMessagePublisher publisher)
+            IMessagePublisher publisher,
+            IServiceGateway<Customer> customerServiceGateway)
         {
             repository = repos as IOrderRepository;
             productServiceGateway = gateway;
             messagePublisher = publisher;
+            customertServiceGateway = customerServiceGateway;
         }
 
         // GET orders
@@ -52,6 +55,11 @@ namespace OrderApi.Controllers
                 return BadRequest();
             }
 
+            if (!CheckCustomer(order.customerId))
+            {
+                return BadRequest("Customer cannot be found or Customer has an unpaid bill");
+            }
+
             if (ProductItemsAvailable(order))
             {
                 try
@@ -76,6 +84,17 @@ namespace OrderApi.Controllers
                 // If there are not enough product items available.
                 return StatusCode(500, "Not enough items in stock.");
             }
+        }
+
+        private bool CheckCustomer(int customerId)
+        {
+            var orderedProduct = customertServiceGateway.Get(customerId);
+            if (orderedProduct == null)
+            {
+                return false;
+            }
+            else
+                return true;
         }
 
         private bool ProductItemsAvailable(Order order)
